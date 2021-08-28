@@ -1,6 +1,6 @@
-<%@ include file="common/header.jspf"%>
-<%@ include file="common/navigation.jspf"%>
+<%@ include file="common/header.jsp"%>
+<%@ include file="common/navigation.jsp"%>
 <div class="container">
 An exception occurred! Please contact Support!
 </div>
-<%@ include file="common/footer.jspf"%>
+<%@ include file="common/footer.jsp"%>

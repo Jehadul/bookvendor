@@ -7,8 +7,6 @@ import in.bookvendor.model.Product;
 
 public interface IProductService {
 
-	List<Product> getProductsByCode(String user);
-
 	Optional<Product> getProductById(long id);
 
 	void updateProduct(Product product);
@@ -18,5 +16,7 @@ public interface IProductService {
 	void deleteProduct(long id);
 	
 	void saveProduct(Product todo);
+
+	List<Product> getAllProducts();
 
 }

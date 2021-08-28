@@ -1,16 +1,16 @@
-<%@ include file="common/header.jspf"%>
-<%@ include file="common/navigation.jspf"%>
+<%@ include file="common/header.jsp"%>
+<%@ include file="common/navigation.jsp"%>
 
 <div class="container">
 	<div>
 		<a type="button" class="btn btn-primary btn-md" href="/add-product">Add Product</a>
 	</div>
 	<br>
-	<div class="panel panel-primary">
-		<div class="panel-heading">
-			<h3>List of Products</h3>
+	<div class="card">
+		<div class="card-header bg-info">
+			<h4>List of Products</h4>
 		</div>
-		<div class="panel-body">
+		<div class="card-body">
 			<table class="table table-striped">
 				<thead>
 					<tr>
@@ -36,4 +36,4 @@
 	</div>
 
 </div>
-<%@ include file="common/footer.jspf"%>
+<%@ include file="common/footer.jsp"%>

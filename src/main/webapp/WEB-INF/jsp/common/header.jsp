@@ -6,8 +6,7 @@
 
 <head>
 <title>Book Vendor</title>
-<link href="webjars/bootstrap/3.3.6/css/bootstrap.min.css"
-	rel="stylesheet">
+<link href="webjars/bootstrap/5.0.1/css/bootstrap.min.css" rel="stylesheet">
 
 <style>
 .footer {
@@ -17,7 +16,7 @@
 	width: 100%;
 	background-color: black;
 	color: white;
-	height: 100px;
+	height: 50px;
 	text-align: center;
 }
 </style>

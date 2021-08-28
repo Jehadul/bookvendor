@@ -7,8 +7,6 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -35,20 +33,9 @@ public class ProductController {
 
 	@RequestMapping(value = "/list-products", method = RequestMethod.GET)
 	public String showProducts(ModelMap model) {
-		String name = getLoggedInUserName(model);
-		model.put("products", productService.getProductsByCode(name));
+		model.put("products", productService.getAllProducts());
 		// model.put("products", service.retrieveProducts(name));
 		return "list-products";
-	}
-
-	private String getLoggedInUserName(ModelMap model) {
-		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-
-		if (principal instanceof UserDetails) {
-			return ((UserDetails) principal).getUsername();
-		}
-
-		return principal.toString();
 	}
 
 	@RequestMapping(value = "/add-product", method = RequestMethod.GET)
@@ -78,7 +65,6 @@ public class ProductController {
 			return "product";
 		}
 
-		product.setProductName(getLoggedInUserName(model));
 		productService.updateProduct(product);
 		return "redirect:/list-products";
 	}
@@ -90,7 +76,6 @@ public class ProductController {
 			return "product";
 		}
 
-		product.setProductName(getLoggedInUserName(model));
 		productService.saveProduct(product);
 		return "redirect:/list-products";
 	}

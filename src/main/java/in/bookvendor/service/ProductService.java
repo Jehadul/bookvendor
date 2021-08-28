@@ -1,6 +1,5 @@
 package in.bookvendor.service;
 
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -17,17 +16,13 @@ public class ProductService implements IProductService {
 	private ProductRepository productRepository;
 
 	@Override
-	public List<Product> getProductsByCode(String code) {
-		return productRepository.findByProductCode(code);
-	}
-
-	@Override
 	public Optional<Product> getProductById(long id) {
 		return productRepository.findById(id);
 	}
 
 	@Override
 	public void updateProduct(Product product) {
+		
 		productRepository.save(product);
 	}
 
@@ -47,5 +42,10 @@ public class ProductService implements IProductService {
 	@Override
 	public void saveProduct(Product product) {
 		productRepository.save(product);
+	}
+
+	@Override
+	public List<Product> getAllProducts() {
+		return productRepository.findAll();
 	}
 }

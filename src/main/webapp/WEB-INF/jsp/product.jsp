@@ -1,11 +1,11 @@
-<%@ include file="common/header.jspf"%>
-<%@ include file="common/navigation.jspf"%>
+<%@ include file="common/header.jsp"%>
+<%@ include file="common/navigation.jsp"%>
 <div class="container">
 	<div class="row">
 		<div class="col-md-6 col-md-offset-3 ">
-			<div class="panel panel-primary">
-				<div class="panel-heading">Add Product</div>
-				<div class="panel-body">
+			<div class="card">
+				<div class="card-header bg-info">Add Product</div>
+				<div class="card-body">
 					<form:form method="post" modelAttribute="product">
 						<form:hidden path="id" />
 						<fieldset class="form-group">
@@ -25,11 +25,11 @@
 						</fieldset>
 
 
-						<button type="submit" class="btn btn-success">Save</button>
+						<button type="submit" class="btn btn-success" style="margin-top: 10px;">Save</button>
 					</form:form>
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
-<%@ include file="common/footer.jspf"%>
+<%@ include file="common/footer.jsp"%>
