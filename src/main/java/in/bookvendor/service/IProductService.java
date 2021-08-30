@@ -7,13 +7,11 @@ import in.bookvendor.model.Product;
 
 public interface IProductService {
 
-	Optional<Product> getProductById(long id);
+	Optional<Product> getProductById(Long id);
 
 	void updateProduct(Product product);
 
-	void addProduct(Product product);
-
-	void deleteProduct(long id);
+	void deleteProduct(Long id);
 	
 	void saveProduct(Product todo);
 
