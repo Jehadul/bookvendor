@@ -1,82 +1,64 @@
 package in.bookvendor.controller;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import in.bookvendor.model.Product;
 import in.bookvendor.service.IProductService;
 
 @Controller
 public class ProductController {
+	ModelAndView mav = new ModelAndView();
 
 	@Autowired
 	private IProductService productService;
 
-	@InitBinder
-	public void initBinder(WebDataBinder binder) {
-		SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-		binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, false));
+	@GetMapping("/list-products")
+	public ModelAndView showProducts(@ModelAttribute("product") Product product) {
+		mav = new ModelAndView("product/list-products");
+		mav.addObject("products", productService.getAllProducts());
+		return mav;
 	}
 
-	@RequestMapping(value = "/list-products", method = RequestMethod.GET)
-	public String showProducts(ModelMap model) {
-		model.put("products", productService.getAllProducts());
-		// model.put("products", service.retrieveProducts(name));
-		return "list-products";
+	@GetMapping("/add-product")
+	public ModelAndView createProduct(@ModelAttribute("product") Product product) {
+		mav = new ModelAndView("product/product");
+		return mav;
 	}
 
-	@RequestMapping(value = "/add-product", method = RequestMethod.GET)
-	public String showAddProductPage(ModelMap model) {
-		model.addAttribute("product", new Product());
-		return "product";
-	}
-
-	@RequestMapping(value = "/delete-product", method = RequestMethod.GET)
+	@RequestMapping(value = "/delete-product")
 	public String deleteProduct(@RequestParam long id) {
 		productService.deleteProduct(id);
-		// service.deleteProduct(id);
 		return "redirect:/list-products";
 	}
 
-	@RequestMapping(value = "/update-product", method = RequestMethod.GET)
-	public String showUpdateProductPage(@RequestParam long id, ModelMap model) {
-		Product product = productService.getProductById(id).get();
-		model.put("product", product);
-		return "product";
+	@GetMapping(value = "/update-product")
+	public ModelAndView editProduct(@RequestParam long id, @ModelAttribute("product") Product product) {
+		mav = new ModelAndView("product/product");
+		mav.addObject("product", productService.getProductById(id).get());
+		return mav;
 	}
 
-	@RequestMapping(value = "/update-product", method = RequestMethod.POST)
-	public String updateProduct(ModelMap model, @Valid Product product, BindingResult result) {
+	@PostMapping(value = "/add-product")
+	public String saveOrUpdateProduct(@Valid @ModelAttribute("product") Product product, BindingResult result) {
+		if (result.hasErrors()) 
+			return "product/product";
 
-		if (result.hasErrors()) {
-			return "product";
+		if (product.getId() != null) {
+			productService.updateProduct(product);
+		}else {
+			productService.saveProduct(product);
 		}
-
-		productService.updateProduct(product);
-		return "redirect:/list-products";
-	}
-
-	@RequestMapping(value = "/add-product", method = RequestMethod.POST)
-	public String addProduct(ModelMap model, @Valid Product product, BindingResult result) {
-
-		if (result.hasErrors()) {
-			return "product";
-		}
-
-		productService.saveProduct(product);
+		
 		return "redirect:/list-products";
 	}
 }
