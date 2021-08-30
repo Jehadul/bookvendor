@@ -1,0 +1,21 @@
+package in.bookvendor.open.service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import in.bookvendor.model.Product;
+import in.bookvendor.service.IProductService;
+
+@Service
+public class OpenService implements IOpenService {
+
+	@Autowired
+	private IProductService productService;
+	
+	public List<Product> getAllProducts() {
+		return productService.getAllProducts();
+	}
+	
+}
