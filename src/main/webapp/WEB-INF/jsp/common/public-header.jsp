@@ -42,7 +42,7 @@
 			  </div>
 			  <div class="col-md-6">
 			  	<div class="d-flex flex-row-reverse bd-highlight">
-				  <div class="p-2 bd-highlight"><i class="ti-power-off"></i><a href="#">Login</a></div>
+				  <div class="p-2 bd-highlight"><i class="ti-power-off"></i><a href="/login">Login</a></div>
 				  <div class="p-2 bd-highlight"><i class="ti-user"></i> <a href="#">My account</a></div>
 				  <div class="p-2 bd-highlight"><i class="ti-alarm-clock"></i> <a href="#">Daily deal</a></div>
 				  <div class="p-2 bd-highlight"><i class="ti-location-pin"></i> Store location</div>

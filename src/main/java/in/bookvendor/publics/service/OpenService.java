@@ -1,4 +1,4 @@
-package in.bookvendor.open.service;
+package in.bookvendor.publics.service;
 
 import java.util.List;
 
