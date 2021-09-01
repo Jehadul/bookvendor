@@ -1,5 +1,5 @@
-<%@ include file="common/header.jsp"%>
-<%@ include file="common/navigation.jsp"%>
+<%@ include file="..\header.jsp"%>
+<%@ include file="..\navigation.jsp"%>
 
 <div class="container">
 	<div>
@@ -38,4 +38,4 @@
 	</div>
 
 </div>
-<%@ include file="common/footer.jsp"%>
+<%@ include file="..\footer.jsp"%>

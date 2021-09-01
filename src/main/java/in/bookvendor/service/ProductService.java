@@ -16,23 +16,17 @@ public class ProductService implements IProductService {
 	private ProductRepository productRepository;
 
 	@Override
-	public Optional<Product> getProductById(long id) {
+	public Optional<Product> getProductById(Long id) {
 		return productRepository.findById(id);
 	}
 
 	@Override
 	public void updateProduct(Product product) {
-		
 		productRepository.save(product);
 	}
 
 	@Override
-	public void addProduct(Product product) {
-		productRepository.save(product);
-	}
-
-	@Override
-	public void deleteProduct(long id) {
+	public void deleteProduct(Long id) {
 		Optional<Product> product = productRepository.findById(id);
 		if (product.isPresent()) {
 			productRepository.delete(product.get());
