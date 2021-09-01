@@ -26,8 +26,10 @@
 							<td>${product.productCode}</td>
 							<td>${product.productName}</td>
 							<td>${product.description}</td>
-							<td><a type="button" class="btn btn-success" href="/update-product?id=${product.id}">Update</a>
-							<a type="button" class="btn btn-warning" href="/delete-product?id=${product.id}">Delete</a></td>
+							<td>
+								<a type="button" class="btn btn-success" href="/update-product?id=${product.id}">Update</a>
+								<a type="button" class="btn btn-warning" href="/delete-product?id=${product.id}">Delete</a>
+							</td>
 						</tr>
 					</c:forEach>
 				</tbody>
